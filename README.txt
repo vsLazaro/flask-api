@@ -4,3 +4,5 @@ pip install flask
 pip install flask flask_restful
 
 pip install Flask-SQLAlchemy
+
+pip install mysql-connector-python
