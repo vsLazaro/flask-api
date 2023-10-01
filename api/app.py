@@ -6,7 +6,7 @@ app = Flask(__name__)
 api = Api(app)
 
 
-api.add_resource(PlaneCrashResource, '/crash', '/crash/<int:user_id>')
+api.add_resource(PlaneCrashResource, '/crash', '/crash/<string:crash_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)

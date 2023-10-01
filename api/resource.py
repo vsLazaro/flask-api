@@ -36,7 +36,7 @@ class PlaneCrashResource(Resource):
         }
     def get(self, crash_id=None):
       if crash_id:
-          crash = session.query.query(PlaneCrash).filter_by(id=crash_id).first()
+          crash = session.query(PlaneCrash).filter_by(id=crash_id).first()
           if crash:
             return self.crash_to_dict(crash)
           else:
@@ -51,19 +51,19 @@ class PlaneCrashResource(Resource):
         crash = session.query(PlaneCrash).filter_by(id=crash_id).first()
         data = request.get_json()
         if crash:
-            PlaneCrash.date = data['date']
-            PlaneCrash.time = data['time']
-            PlaneCrash.location = data['location']
-            PlaneCrash.operator = data['operator']
-            PlaneCrash.flight_number = data['flight_number']
-            PlaneCrash.route = data['route']
-            PlaneCrash.ac_type = data['ac_type']
-            PlaneCrash.registration = data['registration']
-            PlaneCrash.cn_ln = data['cn_ln']
-            PlaneCrash.aboard = data['aboard']
-            PlaneCrash.fatalities = data['fatalities']
-            PlaneCrash.ground = data['ground']
-            PlaneCrash.summary = data['summary']
+            crash.date = data['date']
+            crash.time = data['time']
+            crash.location = data['location']
+            crash.operator = data['operator']
+            crash.flight_number = data['flight_number']
+            crash.route = data['route']
+            crash.ac_type = data['ac_type']
+            crash.registration = data['registration']
+            crash.cn_ln = data['cn_ln']
+            crash.aboard = data['aboard']
+            crash.fatalities = data['fatalities']
+            crash.ground = data['ground']
+            crash.summary = data['summary']
             
             session.commit()
             return {'mensagem': 'Registro de acidente de avião atualizado com sucesso'}
@@ -71,7 +71,7 @@ class PlaneCrashResource(Resource):
             return {'mensagem': 'Registro de acidente de avião não encontrado'}, 404
     
     def delete(self, crash_id):
-        crash = PlaneCrash.query.get_or_404(crash_id)
+        crash = session.query(PlaneCrash).filter_by(id=crash_id).first()
         if crash:
             session.delete(crash)
             session.commit()
