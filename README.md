@@ -22,3 +22,7 @@ Para conseguir rodar a aplicação basta seguir o passo a passo abaixo
 #### 4 - Subindo a aplicação:
 - Para subir a aplicação basta ir no diretorio `api/` e executar o comando `flask run`, isso irá executar a api provavelmente na porta 5000
 - Também foi disponibilizado a collection do postman para consumir a API, você pode importar ela, ela esta na raiz do projeto com nome collection_api.json
+
+
+#### 5 - Executando script de consumo da API
+- Com todo ambiente executando basta acessar o diretório `scripts` e rodar o comando `python requests_coleta.py`, assim ele já testa todos os endpoints da api

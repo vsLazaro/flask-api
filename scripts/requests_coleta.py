@@ -8,27 +8,30 @@ def get_all_crashes():
         crashes = response.json()
         for crash in crashes:
             print(f"Crash ID: {crash['id']}, Operator: {crash['operator']}")
+        return crashes
     else:
         print("An unexpected error occured while attemtping to fetch all crashes")
+    
 
 def get_crash(id):
     response = requests.get(f"{base_url}/crash/{id}")
     if response.status_code == 200:
         crash = response.json()
         print(f"Crash ID: {crash['id']}, Operator: {crash['operator']}")
+        return crash
     else:
         print("An unexpected error occured while attemtping to fetch crash")
 
 def add_crash(input):
     data = input
-    response = requests.post(base_url, json=data)
-    if response.status_code == 200:
+    response = requests.post(f"{base_url}/crash", json=data)
+    if response.status_code == 201:
         print("Crash added successfully")
     else:
         print("An unexpected error occured while attemtping to add new crash")
 
 def update_crash(crashe_id, input):
-    url = f"{base_url}/{crashe_id}"
+    url = f"{base_url}/crash/{crashe_id}"
     data = input
     response = requests.put(url, json=data)
     if response.status_code == 200:
@@ -37,8 +40,8 @@ def update_crash(crashe_id, input):
         print("An unexpected error occured while attemtping to update crash")
 
 def delete_crash(id):
-    response = requests.delete(f"{base_url}/{id}")
-    if response.status_code == 204 | response.status_code == 200:
+    response = requests.delete(f"{base_url}/crash/{id}")
+    if response.status_code == 200:
         print("Crash deleted successfully")
     else:
         print("An unexpected error occured while attemtping to delete crash")
